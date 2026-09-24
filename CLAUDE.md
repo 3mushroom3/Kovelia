@@ -126,8 +126,13 @@ docs/                  ARCHITECTURE.md и прочая документация
 - **Sanity**: `SANITY_PROJECT_ID` и др. Пока не задано, отдаётся контент из `src/content/`. Вебхук Sanity указывает на `POST /api/revalidate` с секретом `SANITY_REVALIDATE_SECRET`.
 - **Заявки**: Telegram (`TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`) и/или email через Resend (`RESEND_API_KEY`, `CONTACT_EMAIL_TO`). В dev без каналов заявка пишется в консоль, в production без каналов возвращается ошибка.
 
+## Продакшен
+
+Сайт работает на https://kovelia.ru. Как всё устроено и как обновлять, описано в `docs/DEPLOY.md`. На том же сервере работает **другой проект** (zernovik.online, pm2 `baza-apk`, системная Node 20): его процессы, системный Node и чужие конфиги nginx не трогать.
+
 ## Открытые TODO
 
+- Канал доставки заявок в production (Telegram или Resend в `/var/www/kovelia/.env.local`), без него форма возвращает ошибку.
 - Телефон и Telegram в `src/lib/site.ts` (корпоративный email `kovelia@list.ru` уже указан).
 - Реквизиты ООО (название, ИНН/ОГРН, адрес) в политике конфиденциальности (`src/content/privacy.ts`), затем проверка юристом.
 - Цифры в макете KOVELIA Agro (`case-study.tsx`, `region-bars.tsx`) иллюстративные: заменить реальными или согласовать.
