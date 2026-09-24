@@ -2,7 +2,7 @@
 export const siteConfig = {
   name: "KOVELIA",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
-  email: "rostik9381525398@gmail.com", // TODO: corporate address
+  email: "kovelia@list.ru",
   phone: "", // TODO
   telegram: "", // TODO: e.g. "https://t.me/kovelia"
   products: [{ name: "KOVELIA Agro", url: "https://zernovik.online" }],
