@@ -46,8 +46,8 @@ export function Header() {
         {t("skip")}
       </a>
       <Container className="flex h-18 items-center justify-between gap-6">
-        <Link href="/" aria-label="KOVELIA" className="rounded-lg">
-          <Logo inverted={!scrolled} />
+        <Link href="/" aria-label="KOVELIA" className="flex rounded-lg">
+          <Logo inverted={!scrolled} priority className="h-10" />
         </Link>
 
         <nav className="hidden lg:block" aria-label="Main">

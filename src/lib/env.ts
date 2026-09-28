@@ -11,9 +11,17 @@ const schema = z.object({
   TELEGRAM_BOT_TOKEN: z.string().optional(),
   TELEGRAM_CHAT_ID: z.string().optional(),
 
-  RESEND_API_KEY: z.string().optional(),
+  // Where leads are emailed (SMTP or Resend).
   CONTACT_EMAIL_TO: z.email().optional(),
   CONTACT_EMAIL_FROM: z.string().optional(),
+
+  // SMTP, e.g. Mail.ru: smtp.mail.ru:465 with an "app password" (пароль для внешних приложений).
+  SMTP_HOST: z.string().optional(),
+  SMTP_PORT: z.coerce.number().int().default(465),
+  SMTP_USER: z.string().optional(),
+  SMTP_PASS: z.string().optional(),
+
+  RESEND_API_KEY: z.string().optional(),
 });
 
 const emptyToUndefined = Object.fromEntries(

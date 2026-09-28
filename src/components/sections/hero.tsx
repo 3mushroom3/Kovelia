@@ -106,7 +106,7 @@ export function Hero() {
           <div className="absolute inset-[6%] rounded-full border border-white/10" />
           <div className="absolute inset-[20%] rounded-full border border-dashed border-white/10 motion-safe:animate-[spin_60s_linear_infinite]" />
           <div className="absolute inset-[26%] animate-float drop-shadow-[0_20px_40px_rgb(0_0_0/0.35)]">
-            <LogoMark className="h-full w-full" />
+            <LogoMark priority className="h-full w-full" />
           </div>
           {CHIPS.map(([label, pos, delay]) => (
             <span

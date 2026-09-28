@@ -17,7 +17,7 @@ export async function Footer({ locale }: { locale: Locale }) {
       <div aria-hidden className="pointer-events-none absolute inset-0 bg-plus" />
       <Container className="relative grid gap-12 py-16 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1.2fr_1.2fr]">
         <div className="max-w-xs">
-          <Logo inverted tagline />
+          <Logo inverted className="h-14" />
           <p className="mt-6 text-sm leading-relaxed text-white/60">{t("tagline")}</p>
         </div>
 
@@ -58,7 +58,10 @@ export async function Footer({ locale }: { locale: Locale }) {
 
         <div>
           <h2 className="mb-4 font-mono text-xs tracking-[0.14em] text-white/40 uppercase">{t("contact")}</h2>
-          <a href={`mailto:${siteConfig.email}`} className="text-sm break-all text-white/80 hover:text-white">
+          <a
+            href={`mailto:${siteConfig.email}`}
+            className="block text-sm break-all text-white/80 hover:text-white"
+          >
             {siteConfig.email}
           </a>
           <Link

@@ -38,7 +38,17 @@ bash /var/www/kovelia/scripts/deploy.sh
 bash /var/www/kovelia/scripts/deploy.sh   # NEXT_PUBLIC_* встраиваются при сборке
 ```
 
-Для формы заявки в production нужен хотя бы один канал: `TELEGRAM_BOT_TOKEN` + `TELEGRAM_CHAT_ID` или `RESEND_API_KEY` + `CONTACT_EMAIL_TO`. Без них форма показывает ошибку отправки.
+Для формы заявки в production нужен хотя бы один канал доставки. Основной вариант — письмо на `kovelia@list.ru` через SMTP Mail.ru:
+
+```
+CONTACT_EMAIL_TO=kovelia@list.ru
+SMTP_HOST=smtp.mail.ru
+SMTP_PORT=465
+SMTP_USER=kovelia@list.ru
+SMTP_PASS=<пароль для внешних приложений из настроек Mail.ru>
+```
+
+Дополнительно можно подключить Telegram (`TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`) или Resend. Без каналов форма показывает ошибку отправки.
 
 ## Известные особенности
 

@@ -83,7 +83,7 @@ export async function CaseStudy({ project }: { project: Project }) {
             </div>
             <div className="flex">
               <aside className="hidden w-14 shrink-0 flex-col items-center gap-3 bg-[#021a18] py-4 sm:flex">
-                <LogoMark className="h-7 w-auto" />
+                <LogoMark className="h-7 w-7" />
                 {Array.from({ length: 5 }, (_, i) => (
                   <span key={i} className={`h-7 w-7 rounded-lg ${i === 0 ? "bg-[#054532]" : "bg-white/5"}`} />
                 ))}

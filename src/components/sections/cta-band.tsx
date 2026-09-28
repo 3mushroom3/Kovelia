@@ -14,7 +14,7 @@ export async function CtaBand() {
       <Container>
         <Reveal className="relative isolate overflow-hidden rounded-[2rem] bg-ink-gradient px-7 py-14 text-white sm:px-14 sm:py-20">
           <div aria-hidden className="absolute inset-0 -z-10 bg-plus" />
-          <LogoMark className="absolute -right-10 -bottom-16 -z-10 h-80 w-auto opacity-15 blur-[1px] sm:h-[26rem]" />
+          <LogoMark className="absolute -right-10 -bottom-16 -z-10 h-80 w-auto opacity-15 sm:h-[26rem]" />
           <h2 className="max-w-2xl text-3xl font-extrabold tracking-tight text-balance sm:text-5xl sm:leading-[1.08]">
             {t("title")}
           </h2>

@@ -43,7 +43,7 @@ export function MobileMenu() {
         >
           <div className="pointer-events-none absolute inset-0 bg-plus" />
           <div className="relative flex h-18 items-center justify-between px-4 sm:px-6">
-            <Logo inverted />
+            <Logo inverted className="h-10" />
             <button
               type="button"
               onClick={() => setOpen(false)}

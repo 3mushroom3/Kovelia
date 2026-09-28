@@ -45,7 +45,7 @@ src/
   i18n/                routing.ts (список локалей), navigation.ts, request.ts
   messages/{ru,en}.json  переводы UI; ru.json задаёт типы ключей
   components/ui/       примитивы без бизнес-логики (Button, Field, Section, Eyebrow, Tag…)
-  components/brand/    Logo и LogoMark (векторный знак «K»)
+  components/brand/    Logo (полный логотип) и LogoMark (знак «K») из src/assets/brand
   components/motion/   Reveal/Stagger, CountUp, Spotlight, PageTransition
   components/layout/   Header, Footer, мобильное меню, переключатели языка и темы
   components/sections/ крупные блоки страниц (Hero, PageHero, Directions, CaseStudy, Process…)
@@ -90,6 +90,7 @@ docs/                  ARCHITECTURE.md и прочая документация
 - **Каждая страница начинается с тёмного hero** (`Hero` на главной, `PageHero` на остальных). Шапка поверх него прозрачная со светлым текстом (`group-data-[top=true]/header:`).
 - Цвета направлений: `accentColor[category.accent]` из `lib/accent.ts` (ai → зелёный, data → синий, infra → янтарный, systems → серый).
 - Скругления `rounded-xl` (кнопки, поля) и `rounded-2xl` (карточки), тени `shadow-card` / `shadow-lift`.
+- Логотип официальный, тот же, что на zernovik.online: `src/assets/brand/*.png`, очищен от ореола прозрачности. `kovelia-logo-light.png` — вариант с белой надписью для тёмного фона. Не перерисовывать и не заменять SVG-версиями.
 - Шрифты: Manrope (текст, кириллица) и JetBrains Mono (`font-mono`: eyebrow-метки, теги, цифры).
 
 **Анимации**
@@ -132,11 +133,10 @@ docs/                  ARCHITECTURE.md и прочая документация
 
 ## Открытые TODO
 
-- Канал доставки заявок в production (Telegram или Resend в `/var/www/kovelia/.env.local`), без него форма возвращает ошибку.
+- Доставка заявок в production: SMTP Mail.ru на `kovelia@list.ru` (нужен пароль для внешних приложений в `SMTP_PASS` в `/var/www/kovelia/.env.local`). Без него форма возвращает ошибку.
 - Телефон и Telegram в `src/lib/site.ts` (корпоративный email `kovelia@list.ru` уже указан).
 - Реквизиты ООО (название, ИНН/ОГРН, адрес) в политике конфиденциальности (`src/content/privacy.ts`), затем проверка юристом.
 - Цифры в макете KOVELIA Agro (`case-study.tsx`, `region-bars.tsx`) иллюстративные: заменить реальными или согласовать.
-- Векторный оригинал логотипа: `LogoMark` — это перерисовка PNG, сверить с оригиналом.
 - OG-изображение (`src/app/[locale]/opengraph-image.tsx`).
 - Sanity Studio: установить `sanity`, создать `sanity.config.ts` с `schemaTypes` и роут `/studio`.
 - Аналитика (если появится, то вместе с cookie-баннером и правкой политики).
