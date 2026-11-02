@@ -4,7 +4,7 @@ import type { Project } from "@/lib/cms/types";
 export const projects: Record<Locale, Project[]> = {
   ru: [
     {
-      slug: "zernovik",
+      slug: "kovelia-agro",
       title: "KOVELIA Agro — реестр АПК",
       client: "Собственный продукт",
       summary:
@@ -15,7 +15,7 @@ export const projects: Record<Locale, Project[]> = {
   ],
   en: [
     {
-      slug: "zernovik",
+      slug: "kovelia-agro",
       title: "KOVELIA Agro — agribusiness registry",
       client: "In-house product",
       summary:
