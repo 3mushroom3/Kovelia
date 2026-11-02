@@ -5,7 +5,7 @@ export const siteConfig = {
   email: "kovelia@list.ru",
   phone: "", // TODO
   telegram: "", // TODO: e.g. "https://t.me/kovelia"
-  products: [{ name: "KOVELIA Agro", url: "https://zernovik.online" }],
+  products: [{ name: "KOVELIA Agro", url: "https://kovelia-agro.ru" }],
   nav: [
     { href: "/", key: "home" },
     { href: "/services", key: "services" },

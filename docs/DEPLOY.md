@@ -15,7 +15,7 @@
 
 ### На сервере работает ещё один проект
 
-**baza-apk** (zernovik.online): pm2 `baza-apk`, порт 3001, **системная Node 20**, свой конфиг nginx. Не трогать:
+**baza-apk** (kovelia-agro.ru): pm2 `baza-apk`, порт 3001, **системная Node 20**, свой конфиг nginx. Не трогать:
 
 - системный Node не обновлять: baza-apk работает на нём, а pnpm 11 требует Node ≥ 22, поэтому у Kovelia своя Node в `/opt/node24`;
 - не запускать `pm2 restart all` или `pm2 delete all`, только `pm2 … kovelia`;
@@ -50,10 +50,37 @@ SMTP_PASS=<пароль для внешних приложений из наст
 
 Дополнительно можно подключить Telegram (`TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`) или Resend. Без каналов форма показывает ошибку отправки.
 
+## Безопасность
+
+Меры по аудиту от 25–26 сентября 2026 года:
+
+| Пункт аудита                    | Где исправляется                                                                         |
+| ------------------------------- | ---------------------------------------------------------------------------------------- |
+| SEC-01 перегрузка SSH           | `scripts/harden-server.sh`: лимиты sshd, fail2ban, `ufw limit` (если активен)            |
+| SEC-02 устаревшие алгоритмы     | `scripts/harden-server.sh`: `/etc/ssh/sshd_config.d/00-kovelia-hardening.conf`           |
+| SEC-03 версия nginx             | `scripts/harden-server.sh`: обновление пакета из репозитория Ubuntu, `server_tokens off` |
+| SEC-04 HSTS, SEC-05 CSP         | `next.config.ts`, попадает на сервер обычным `deploy.sh`                                 |
+| Спам через форму (сверх аудита) | nginx `limit_req` (POST 10/мин на IP) и лимит в `src/features/contact/rate-limit.ts`     |
+
+Вход только по ключу (рекомендуется, если для baza-apk никто не входит по паролю): `DISABLE_PASSWORD_AUTH=1 bash /var/www/kovelia/scripts/harden-server.sh`.
+
+Серверную часть применяет один скрипт (запускать от root, повторный запуск безопасен):
+
+```bash
+bash /var/www/kovelia/scripts/harden-server.sh
+```
+
+- Сессию, из которой запущен скрипт, **не закрывать**, пока вход из второго терминала не проверен. Откат SSH: `rm /etc/ssh/sshd_config.d/00-kovelia-hardening.conf && systemctl reload ssh`.
+- Копия `/etc/ssh` и `/etc/nginx` до изменений лежит в `/root/security-backup-<дата>`.
+- sshd общий для обоих проектов: старые SSH-клиенты без `curve25519` / `hmac-sha2-*-etm` подключиться не смогут.
+- Nginx остаётся 1.18.0 из Ubuntu 22.04: исправления безопасности переносятся в сборку пакета без смены версии. Переход на репозиторий nginx.org затронет kovelia-agro.ru, делать его только отдельно и согласованно.
+- CSP статическая (страницы пререндерятся, nonce потребовал бы динамического рендеринга), поэтому в `script-src` и `style-src` есть `'unsafe-inline'`. Новый внешний источник (аналитика, виджеты, шрифты) нужно добавить в `contentSecurityPolicy` в `next.config.ts`, иначе браузер его заблокирует.
+- HSTS без `includeSubDomains`. Добавлять его можно, когда все поддомены `kovelia.ru` работают по HTTPS.
+
 ## Известные особенности
 
 - **Не запускать `next start` с `-H 127.0.0.1`.** Rewrite локали next-intl (`/services` → `/ru/services`) за прокси с `X-Forwarded-Proto: https` тогда уходит в `https://localhost:3002` и падает с 500. Нужно использовать `-H localhost`.
-- sshd иногда сбрасывает подключения (`kex_exchange_identification: Connection closed`). Причина в ботах, которые перебирают пароли и забивают лимит `MaxStartups`. Помогает повторить подключение.
+- sshd иногда сбрасывает подключения (`kex_exchange_identification: Connection closed`). Причина в ботах, которые перебирают пароли и забивают лимит `MaxStartups`. Помогает повторить подключение. После `scripts/harden-server.sh` таких сбросов должно стать меньше.
 
 ## Логи
 

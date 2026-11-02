@@ -4,7 +4,7 @@ import logo from "@/assets/brand/kovelia-logo.png";
 import mark from "@/assets/brand/kovelia-mark.png";
 import { cn } from "@/lib/utils";
 
-// Brand assets are the official KOVELIA logo (same as zernovik.online), cleaned of the transparency halo.
+// Brand assets are the official KOVELIA logo (same as kovelia-agro.ru), cleaned of the transparency halo.
 // kovelia-logo-light.png is the same artwork with a white wordmark for dark (ink) backgrounds.
 
 /** The "K" mark. Size it with height/width classes. */

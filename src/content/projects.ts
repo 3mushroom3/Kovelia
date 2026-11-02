@@ -9,7 +9,7 @@ export const projects: Record<Locale, Project[]> = {
       client: "Собственный продукт",
       summary:
         "Реестр деклараций соответствия на зерно по всей России: производители, трейдеры, объёмы и контакты. Данные обновляются автоматически, у реестра есть интерактивная карта, интеграция с CRM и уведомления о новых декларациях.",
-      url: "https://zernovik.online",
+      url: "https://kovelia-agro.ru",
       tags: ["Парсинг", "PostgreSQL", "Карты", "Bitrix24", "Подписки"],
     },
   ],
@@ -20,7 +20,7 @@ export const projects: Record<Locale, Project[]> = {
       client: "In-house product",
       summary:
         "A registry of grain conformity declarations across Russia: producers, traders, volumes and contacts. Automatically updated data, an interactive map, CRM integration and alerts about new declarations.",
-      url: "https://zernovik.online",
+      url: "https://kovelia-agro.ru",
       tags: ["Scraping", "PostgreSQL", "Maps", "Bitrix24", "Subscriptions"],
     },
   ],

@@ -7,7 +7,7 @@ import { Eyebrow } from "@/components/ui/eyebrow";
 import type { Project } from "@/lib/cms";
 import { RegionBars } from "./region-bars";
 
-/** Featured case: KOVELIA Agro (zernovik.online) with a stylised product preview. */
+/** Featured case: KOVELIA Agro (kovelia-agro.ru) with a stylised product preview. */
 export async function CaseStudy({ project }: { project: Project }) {
   const t = await getTranslations("Case");
   const features = t.raw("features") as string[];
@@ -69,7 +69,7 @@ export async function CaseStudy({ project }: { project: Project }) {
           </Reveal>
         </div>
 
-        {/* Product preview mock, echoing the zernovik.online dashboard */}
+        {/* Product preview mock, echoing the kovelia-agro.ru dashboard */}
         <Reveal y={40} delay={0.1} className="relative">
           <div className="absolute -inset-8 -z-10 rounded-[2rem] bg-[radial-gradient(circle_at_60%_40%,rgb(47_197_138/0.35),transparent_65%)] blur-2xl" />
           <div className="overflow-hidden rounded-2xl border border-white/15 bg-[#f7f9fb] text-[#212829] shadow-[0_30px_80px_rgb(0_0_0/0.45)]">
@@ -78,7 +78,7 @@ export async function CaseStudy({ project }: { project: Project }) {
               <span className="size-2.5 rounded-full bg-[#febc2e]" />
               <span className="size-2.5 rounded-full bg-[#28c840]" />
               <span className="ml-3 rounded-md bg-[#f1f5f4] px-3 py-1 font-mono text-[0.7rem] text-[#6f8080]">
-                zernovik.online
+                kovelia-agro.ru
               </span>
             </div>
             <div className="flex">

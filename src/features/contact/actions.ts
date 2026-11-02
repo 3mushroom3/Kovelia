@@ -1,6 +1,8 @@
 "use server";
 
+import { headers } from "next/headers";
 import { notifyContact } from "./notify";
+import { clientIp, takeToken } from "./rate-limit";
 import { contactSchema, type ContactErrorKey, type ContactState } from "./schema";
 
 export async function submitContact(_prev: ContactState, formData: FormData): Promise<ContactState> {
@@ -30,6 +32,14 @@ export async function submitContact(_prev: ContactState, formData: FormData): Pr
       fieldErrors[field] ??= issue.message as ContactErrorKey;
     }
     return { status: "error", fieldErrors, values };
+  }
+
+  // Counted only for valid submissions, so typos don't eat a visitor's quota.
+  // Without a proxy IP (local dev) there is nothing to key on; nginx limits POSTs in production.
+  const ip = clientIp(await headers());
+  if (ip && !takeToken(ip)) {
+    console.warn("[contact] rate limited", ip);
+    return { status: "error", values };
   }
 
   try {

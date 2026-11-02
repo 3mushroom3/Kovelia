@@ -2,7 +2,7 @@
 # Update the production site from GitHub. Run ON THE SERVER as root:
 #   bash /var/www/kovelia/scripts/deploy.sh
 #
-# The server also hosts baza-apk (zernovik.online, pm2 "baza-apk", port 3001, system Node 20).
+# The server also hosts baza-apk (kovelia-agro.ru, pm2 "baza-apk", port 3001, system Node 20).
 # This script touches only the "kovelia" pm2 process and uses its private Node 24 in /opt/node24.
 set -euo pipefail
 

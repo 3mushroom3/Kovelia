@@ -54,7 +54,8 @@ async function sendSmtp(data: ContactInput, text: string) {
     // Mail.ru only allows sending from the authenticated mailbox.
     from: `"Сайт KOVELIA" <${env.SMTP_USER}>`,
     to: env.CONTACT_EMAIL_TO,
-    replyTo: `"${data.name.replace(/"/g, "")}" <${data.email}>`,
+    // Object form: nodemailer encodes the name itself, so user input can't add recipients.
+    replyTo: { name: data.name, address: data.email },
     subject: subject(data),
     text,
   });
